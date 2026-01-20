@@ -257,7 +257,7 @@ export function SolutionTabs({ title, solutions }: SolutionTabsProps) {
   const [activeTab, setActiveTab] = useState(solutions[0]);
 
   return (
-    <section className="py-24 bg-bg-primary relative overflow-hidden">
+    <section id="solutions" className="py-24 bg-bg-primary relative overflow-hidden">
       <Container>
         <SectionHeading badge="Решение" badgeVariant="accent">
           {title}

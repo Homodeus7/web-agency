@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { Container } from '@/shared/ui'
+import Link from "next/link";
+import { Container } from "@/shared/ui";
 
 export function Header() {
   return (
@@ -10,12 +10,12 @@ export function Header() {
         </Link>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-text-secondary">
-          <Link href="#services" className="hover:text-white transition-colors">
-            Услуги
+          <Link href="#solutions" className="hover:text-white transition-colors">
+            Решения
           </Link>
-          <Link href="#cases" className="hover:text-white transition-colors">
+          {/* <Link href="#cases" className="hover:text-white transition-colors">
             Кейсы
-          </Link>
+          </Link> */}
           <Link href="#pricing" className="hover:text-white transition-colors">
             Цены
           </Link>
@@ -29,5 +29,5 @@ export function Header() {
         </Link>
       </Container>
     </nav>
-  )
+  );
 }
