@@ -9,8 +9,8 @@ export default function StudioLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ru">
-      <body>{children}</body>
-    </html>
+    <div className="fixed inset-0 z-50 bg-white">
+      {children}
+    </div>
   )
 }

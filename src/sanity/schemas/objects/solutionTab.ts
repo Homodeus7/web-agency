@@ -38,7 +38,22 @@ export const solutionTab = defineType({
       name: 'metric',
       title: 'Метрика',
       type: 'string',
-      description: 'Например: "< 0.8s LCP" или "100% Контроль"',
+      description: 'Например: "0.8 сек загрузка" или "100% Контроль"',
+    }),
+    defineField({
+      name: 'showCodeExample',
+      title: 'Показывать код',
+      type: 'boolean',
+      initialValue: true,
+      description: 'Включить/выключить блок с примером кода',
+    }),
+    defineField({
+      name: 'codeExample',
+      title: 'Пример кода',
+      type: 'text',
+      rows: 15,
+      description: 'Реальный пример кода с этого сайта',
+      hidden: ({ parent }) => !parent?.showCodeExample,
     }),
   ],
   preview: {

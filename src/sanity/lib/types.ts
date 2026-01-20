@@ -27,6 +27,8 @@ export interface SolutionData {
   description?: string
   features?: string[]
   metric?: string
+  showCodeExample?: boolean
+  codeExample?: string
 }
 
 // SEO Insight Section

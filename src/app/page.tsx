@@ -50,10 +50,7 @@ export default async function HomePage() {
           description={data.seoDescription!}
           cards={data.seoCards!}
         />
-        <ComparisonTable
-          title={data.comparisonTitle!}
-          rows={data.comparisonRows!}
-        />
+        <ComparisonTable />
         <ProcessSteps
           title={data.processTitle!}
           steps={data.processSteps!}

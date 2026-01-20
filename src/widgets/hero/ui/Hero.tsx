@@ -1,22 +1,22 @@
-'use client'
+"use client";
 
-import { ArrowRight } from 'lucide-react'
-import { Button, Container } from '@/shared/ui'
-import type { HeroData } from '@/sanity/lib/types'
+import { ArrowRight } from "lucide-react";
+import { Button, Container } from "@/shared/ui";
+import type { HeroData } from "@/sanity/lib/types";
 
 interface HeroProps {
-  data: HeroData
+  data: HeroData;
 }
 
 export function Hero({ data }: HeroProps) {
-  const trustLogos = data.trustLogos ?? []
+  const trustLogos = data.trustLogos ?? [];
 
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-accent-primary/20 rounded-full blur-[100px] animate-blob" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-accent-secondary/20 rounded-full blur-[100px] animate-blob [animation-delay:2s]" />
+        <div className="absolute top-[-10%] right-[-5%] w-125 h-125 bg-accent-primary/20 rounded-full blur-[100px] animate-blob" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-125 h-125 bg-accent-secondary/20 rounded-full blur-[100px] animate-blob [animation-delay:2s]" />
       </div>
 
       <Container className="relative z-10">
@@ -32,7 +32,7 @@ export function Hero({ data }: HeroProps) {
           {/* Heading */}
           <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight tracking-tight mb-6 animate-in animate-delay-100">
             {data.title} <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-primary animate-gradient-x">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-primary via-accent-secondary to-accent-primary animate-gradient-x">
               {data.highlightedText}
             </span>
           </h1>
@@ -52,9 +52,7 @@ export function Hero({ data }: HeroProps) {
             <Button>
               {data.primaryButtonText} <ArrowRight className="w-4 h-4" />
             </Button>
-            <Button variant="secondary">
-              {data.secondaryButtonText}
-            </Button>
+            <Button variant="secondary">{data.secondaryButtonText}</Button>
           </div>
 
           {/* Trust Badges */}
@@ -65,7 +63,10 @@ export function Hero({ data }: HeroProps) {
               </p>
               <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
                 {trustLogos.map((logo, i) => (
-                  <span key={i} className="text-xl font-display font-bold flex items-center gap-2">
+                  <span
+                    key={i}
+                    className="text-xl font-display font-bold flex items-center gap-2"
+                  >
                     <div className="w-6 h-6 rounded bg-white/20" />
                     {logo}
                   </span>
@@ -76,5 +77,5 @@ export function Hero({ data }: HeroProps) {
         </div>
       </Container>
     </section>
-  )
+  );
 }

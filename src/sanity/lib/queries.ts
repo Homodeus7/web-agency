@@ -33,7 +33,9 @@ export const homePageQuery = groq`
       title,
       description,
       features,
-      metric
+      metric,
+      showCodeExample,
+      codeExample
     },
 
     // SEO Insight Section
