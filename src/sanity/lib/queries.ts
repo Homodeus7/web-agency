@@ -96,6 +96,24 @@ export const homePageQuery = groq`
       description,
       buttonText,
       contactEmail
+    },
+
+    // Footer Section
+    footer {
+      brandName,
+      brandDescription,
+      linkColumns[] {
+        title,
+        links[] {
+          label,
+          href
+        }
+      },
+      socialLinks[] {
+        platform,
+        url
+      },
+      copyrightText
     }
   }
 `

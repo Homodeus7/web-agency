@@ -84,6 +84,30 @@ export interface CTAData {
   contactEmail?: string
 }
 
+// Footer Section
+export interface SocialLinkData {
+  platform: 'telegram' | 'twitter' | 'github' | 'linkedin' | 'instagram' | 'youtube' | 'vk'
+  url: string
+}
+
+export interface FooterLinkData {
+  label: string
+  href: string
+}
+
+export interface FooterLinkColumnData {
+  title: string
+  links?: FooterLinkData[]
+}
+
+export interface FooterData {
+  brandName?: string
+  brandDescription?: string
+  linkColumns?: FooterLinkColumnData[]
+  socialLinks?: SocialLinkData[]
+  copyrightText?: string
+}
+
 // Full Home Page Data
 export interface HomePageData {
   // Hero
@@ -125,4 +149,7 @@ export interface HomePageData {
 
   // CTA
   cta?: CTAData
+
+  // Footer
+  footer?: FooterData
 }

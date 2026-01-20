@@ -1,46 +1,46 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Button, Container } from '@/shared/ui'
-import type { CTAData } from '@/sanity/lib/types'
+import { useState } from "react";
+import { Button, Container } from "@/shared/ui";
+import type { CTAData } from "@/sanity/lib/types";
 
 interface CTAProps {
-  data: CTAData
+  data: CTAData;
 }
 
 export function CTA({ data }: CTAProps) {
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/telegram', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/telegram", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, phone }),
-      })
+      });
 
       if (response.ok) {
-        setSubmitted(true)
-        setEmail('')
-        setPhone('')
+        setSubmitted(true);
+        setEmail("");
+        setPhone("");
       }
     } catch (error) {
-      console.error('Error submitting form:', error)
+      console.error("Error submitting form:", error);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <section className="py-24 relative overflow-hidden" id="cta">
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/40 via-bg-primary to-cyan-900/20 z-0" />
+      <div className="absolute inset-0 bg-linear-to-br from-indigo-900/40 via-bg-primary to-cyan-900/20 z-0" />
 
       <Container className="relative z-10">
         <div className="max-w-4xl mx-auto bg-bg-elevated/50 backdrop-blur-lg border border-white/10 rounded-3xl p-8 md:p-16 text-center shadow-[0_0_50px_rgba(79,70,229,0.2)]">
@@ -81,13 +81,20 @@ export function CTA({ data }: CTAProps) {
                   className="w-full bg-bg-secondary border border-white/10 rounded-xl px-6 py-4 text-white placeholder-text-muted focus:outline-none focus:border-accent-primary transition-colors"
                 />
               </div>
-              <Button type="submit" className="w-full py-4 text-lg" disabled={isSubmitting}>
-                {isSubmitting ? 'Отправка...' : data.buttonText}
+              <Button
+                type="submit"
+                className="w-full py-4 text-lg"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Отправка..." : data.buttonText}
               </Button>
               {data.contactEmail && (
                 <p className="text-center text-xs text-text-muted mt-4">
-                  Или напишите нам:{' '}
-                  <a href={`mailto:${data.contactEmail}`} className="text-accent-secondary hover:underline">
+                  Или напишите нам:{" "}
+                  <a
+                    href={`mailto:${data.contactEmail}`}
+                    className="text-accent-secondary hover:underline"
+                  >
                     {data.contactEmail}
                   </a>
                 </p>
@@ -97,5 +104,5 @@ export function CTA({ data }: CTAProps) {
         </div>
       </Container>
     </section>
-  )
+  );
 }

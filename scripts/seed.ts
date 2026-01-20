@@ -376,6 +376,47 @@ const homePageData = {
     buttonText: 'Отправить заявку',
     contactEmail: 'hello@studio.dev',
   },
+
+  // Footer Section
+  footer: {
+    _type: 'footerSection',
+    brandName: 'Studio.',
+    brandDescription:
+      'Создаем сайты, которые стимулируют рост бизнеса. Производительность, масштабируемость и превосходный дизайн без компромиссов.',
+    linkColumns: [
+      {
+        _type: 'footerLinkColumn',
+        _key: 'col1',
+        title: 'Услуги',
+        links: [
+          { _key: 'link1', label: 'Лендинги', href: '#pricing' },
+          { _key: 'link2', label: 'Корпоративные сайты', href: '#pricing' },
+          { _key: 'link3', label: 'E-commerce', href: '#pricing' },
+          { _key: 'link4', label: 'Миграция на Sanity', href: '#pricing' },
+        ],
+      },
+      {
+        _type: 'footerLinkColumn',
+        _key: 'col2',
+        title: 'Ресурсы',
+        links: [
+          { _key: 'link5', label: 'Кейсы', href: '#' },
+          { _key: 'link6', label: 'Блог', href: '#' },
+          { _key: 'link7', label: 'FAQ', href: '#faq' },
+          { _key: 'link8', label: 'Контакты', href: '#cta' },
+        ],
+      },
+    ],
+    socialLinks: [
+      {
+        _type: 'socialLink',
+        _key: 'social1',
+        platform: 'telegram',
+        url: 'https://t.me/awaitMeBro',
+      },
+    ],
+    copyrightText: '© {year} Studio. Все права защищены.',
+  },
 }
 
 async function seed() {

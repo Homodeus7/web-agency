@@ -14,6 +14,9 @@ import { techItem } from './objects/techItem'
 import { pricingPlan } from './objects/pricingPlan'
 import { faqItem } from './objects/faqItem'
 import { ctaSection } from './objects/ctaSection'
+import { socialLink } from './objects/socialLink'
+import { footerLinkColumn } from './objects/footerLinkColumn'
+import { footerSection } from './objects/footerSection'
 
 export const schemaTypes = [
   // Documents
@@ -32,4 +35,7 @@ export const schemaTypes = [
   pricingPlan,
   faqItem,
   ctaSection,
+  socialLink,
+  footerLinkColumn,
+  footerSection,
 ]

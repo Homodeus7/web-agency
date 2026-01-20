@@ -15,6 +15,7 @@ export const homePage = defineType({
     { name: 'pricing', title: 'Цены' },
     { name: 'faq', title: 'FAQ' },
     { name: 'cta', title: 'Призыв к действию' },
+    { name: 'footer', title: 'Футер' },
   ],
   fields: [
     // Hero Section
@@ -174,6 +175,14 @@ export const homePage = defineType({
       title: 'Призыв к действию',
       type: 'ctaSection',
       group: 'cta',
+    }),
+
+    // Footer Section
+    defineField({
+      name: 'footer',
+      title: 'Футер',
+      type: 'footerSection',
+      group: 'footer',
     }),
   ],
   preview: {

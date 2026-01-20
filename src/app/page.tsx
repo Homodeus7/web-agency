@@ -72,7 +72,7 @@ export default async function HomePage() {
         />
         <CTA data={data.cta!} />
       </main>
-      <Footer />
+      <Footer data={data.footer} />
     </>
   )
 }
