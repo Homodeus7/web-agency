@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/src/shared//assets/hero.png" alt="Next.js + Sanity Лендинг Агентства" width="700" />
+  <img src="/src/shared//assets/hero.png" alt="Next.js + Sanity Лендинг Агентства" width="900" />
 </p>
 
 [![Next.js](https://img.shields.io/badge/Next.js-15.1-black?logo=next.js)](https://nextjs.org/)
