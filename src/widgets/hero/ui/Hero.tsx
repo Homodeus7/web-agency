@@ -49,10 +49,16 @@ export function Hero({ data }: HeroProps) {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-in animate-delay-300">
-            <Button>
+            <Button
+              onClick={() =>
+                document
+                  .getElementById("cta")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
               {data.primaryButtonText} <ArrowRight className="w-4 h-4" />
             </Button>
-            <Button variant="secondary">{data.secondaryButtonText}</Button>
+            {/* <Button variant="secondary">{data.secondaryButtonText}</Button> */}
           </div>
 
           {/* Trust Badges */}
