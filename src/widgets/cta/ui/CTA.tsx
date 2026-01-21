@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { X } from "lucide-react";
 import { Button, Container } from "@/shared/ui";
+import { useSelectedPackage } from "@/shared/lib/selected-package-context";
 import type { CTAData } from "@/sanity/lib/types";
 
 interface CTAProps {
@@ -13,6 +15,7 @@ export function CTA({ data }: CTAProps) {
   const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const { selectedPackage, clearPackage } = useSelectedPackage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,13 +25,18 @@ export function CTA({ data }: CTAProps) {
       const response = await fetch("/api/telegram", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, phone }),
+        body: JSON.stringify({
+          email,
+          phone,
+          ...(selectedPackage && { package: selectedPackage }),
+        }),
       });
 
       if (response.ok) {
         setSubmitted(true);
         setEmail("");
         setPhone("");
+        clearPackage();
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -62,6 +70,24 @@ export function CTA({ data }: CTAProps) {
               onSubmit={handleSubmit}
               className="max-w-md mx-auto space-y-4 text-left"
             >
+              {selectedPackage && (
+                <div className="flex items-center justify-center gap-2 p-3 rounded-xl bg-accent-primary/10 border border-accent-primary/30">
+                  <span className="text-sm text-text-secondary">
+                    Выбран пакет:
+                  </span>
+                  <span className="text-sm font-semibold text-accent-secondary">
+                    {selectedPackage}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={clearPackage}
+                    className="ml-2 p-1 rounded-full hover:bg-white/10 transition-colors"
+                    aria-label="Убрать выбор пакета"
+                  >
+                    <X className="w-4 h-4 text-text-muted" />
+                  </button>
+                </div>
+              )}
               <div>
                 <input
                   type="email"

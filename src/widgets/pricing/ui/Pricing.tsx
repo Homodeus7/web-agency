@@ -1,3 +1,5 @@
+"use client";
+
 import { CheckCircle2 } from "lucide-react";
 import {
   Button,
@@ -6,6 +8,7 @@ import {
   AnimatedSection,
 } from "@/shared/ui";
 import { cn } from "@/shared/lib/cn";
+import { useSelectedPackage } from "@/shared/lib/selected-package-context";
 import type { PricingPlanData } from "@/sanity/lib/types";
 
 interface PricingProps {
@@ -14,6 +17,13 @@ interface PricingProps {
 }
 
 export function Pricing({ title, plans }: PricingProps) {
+  const { selectPackage } = useSelectedPackage();
+
+  const handleSelectPlan = (planName: string) => {
+    selectPackage(planName);
+    document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section className="py-24 bg-bg-primary" id="pricing">
       <Container>
@@ -65,6 +75,7 @@ export function Pricing({ title, plans }: PricingProps) {
                 <Button
                   variant={tier.isPopular ? "primary" : "secondary"}
                   className="w-full"
+                  onClick={() => handleSelectPlan(tier.name)}
                 >
                   {tier.ctaText}
                 </Button>

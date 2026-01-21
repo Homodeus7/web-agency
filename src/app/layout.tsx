@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
+import { Providers } from './providers'
 import './globals.css'
 
 const inter = Inter({
@@ -43,7 +44,7 @@ export default function RootLayout({
     <html lang="ru" className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen bg-bg-primary text-text-primary font-sans antialiased">
         <div className="noise-bg" aria-hidden="true" />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
