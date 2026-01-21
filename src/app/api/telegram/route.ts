@@ -3,7 +3,11 @@ import { z } from 'zod'
 
 const schema = z.object({
   email: z.string().email(),
-  phone: z.string().optional(),
+  phone: z
+    .string()
+    .regex(/^\+7\d{10}$/, "Телефон должен быть в формате +7XXXXXXXXXX")
+    .optional(),
+  telegram: z.string().optional(),
   message: z.string().optional(),
   package: z.string().optional(),
 })
@@ -29,6 +33,7 @@ export async function POST(request: Request) {
 
 📧 Email: ${data.email}
 ${data.phone ? `📱 Телефон: ${data.phone}` : ''}
+${data.telegram ? `✈️ Telegram: ${data.telegram}` : ''}
 ${data.package ? `📦 Пакет: ${data.package}` : ''}
 ${data.message ? `\n💬 Сообщение:\n${data.message}` : ''}
 

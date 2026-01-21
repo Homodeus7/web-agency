@@ -4,6 +4,7 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { Button, Container } from "@/shared/ui";
 import { useSelectedPackage } from "@/shared/lib/selected-package-context";
+import { formatPhone, parsePhoneDigits } from "@/shared/lib/phone";
 import type { CTAData } from "@/sanity/lib/types";
 
 interface CTAProps {
@@ -12,10 +13,33 @@ interface CTAProps {
 
 export function CTA({ data }: CTAProps) {
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phoneDigits, setPhoneDigits] = useState("");
+  const [phoneFocused, setPhoneFocused] = useState(false);
+  const [telegram, setTelegram] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { selectedPackage, clearPackage } = useSelectedPackage();
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhoneDigits(parsePhoneDigits(e.target.value));
+  };
+
+  const handlePhoneKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Backspace" && phoneDigits.length > 0) {
+      e.preventDefault();
+      setPhoneDigits((prev) => prev.slice(0, -1));
+    }
+  };
+
+  const handlePhoneFocus = () => setPhoneFocused(true);
+  const handlePhoneBlur = () => setPhoneFocused(false);
+
+  const phoneValue =
+    phoneDigits.length > 0 || phoneFocused ? formatPhone(phoneDigits) : "";
+
+  const handleTelegramChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTelegram(e.target.value);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +51,8 @@ export function CTA({ data }: CTAProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email,
-          phone,
+          phone: phoneDigits.length > 0 ? `+7${phoneDigits}` : undefined,
+          telegram: telegram || undefined,
           ...(selectedPackage && { package: selectedPackage }),
         }),
       });
@@ -35,7 +60,8 @@ export function CTA({ data }: CTAProps) {
       if (response.ok) {
         setSubmitted(true);
         setEmail("");
-        setPhone("");
+        setPhoneDigits("");
+        setTelegram("");
         clearPackage();
       }
     } catch (error) {
@@ -101,9 +127,21 @@ export function CTA({ data }: CTAProps) {
               <div>
                 <input
                   type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="Телефон (опционально)"
+                  value={phoneValue}
+                  onChange={handlePhoneChange}
+                  onKeyDown={handlePhoneKeyDown}
+                  onFocus={handlePhoneFocus}
+                  onBlur={handlePhoneBlur}
+                  placeholder="+7 (012) 345-67-89"
+                  className="w-full bg-bg-secondary border border-white/10 rounded-xl px-6 py-4 text-white placeholder-text-muted focus:outline-none focus:border-accent-primary transition-colors"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  value={telegram}
+                  onChange={handleTelegramChange}
+                  placeholder="@username"
                   className="w-full bg-bg-secondary border border-white/10 rounded-xl px-6 py-4 text-white placeholder-text-muted focus:outline-none focus:border-accent-primary transition-colors"
                 />
               </div>
