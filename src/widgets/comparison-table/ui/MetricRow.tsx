@@ -16,7 +16,7 @@ export function MetricRow({ metric, isLast }: MetricRowProps) {
     >
       {/* Label Column */}
       <div
-        className={`p-4 md:p-6 flex items-center gap-2 md:gap-3 text-slate-300 font-medium text-xs md:text-base ${STICKY_CELL_CLASS}`}
+        className={`max-w-36 md:max-w-full p-4 md:p-6 flex items-center gap-2 md:gap-3 text-slate-300 font-medium text-xs md:text-base ${STICKY_CELL_CLASS}`}
       >
         <div className="p-1.5 md:p-2 rounded-lg bg-slate-800 text-slate-400 group-hover:text-white transition-colors shrink-0">
           {metric.icon}
