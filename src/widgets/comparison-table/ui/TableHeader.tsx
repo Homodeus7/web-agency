@@ -49,8 +49,10 @@ const platforms: PlatformHeaderProps[] = [
 
 export function TableHeader() {
   return (
-    <div className="grid grid-cols-[1.2fr_1fr_1fr_1.1fr] min-w-200 border-b border-slate-800/60">
-      <div className={`p-4 md:p-8 flex items-end pb-4 md:pb-6 ${STICKY_CELL_CLASS}`}>
+    <div className="grid grid-cols-4 min-w-200 border-b border-slate-800/60">
+      <div
+        className={`p-4 md:p-8 flex items-end pb-4 md:pb-6 ${STICKY_CELL_CLASS}`}
+      >
         <span className="text-slate-400 font-medium tracking-wide uppercase text-xs">
           Критерий
         </span>

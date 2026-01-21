@@ -141,7 +141,7 @@ export function CTA({ data }: CTAProps) {
                   type="text"
                   value={telegram}
                   onChange={handleTelegramChange}
-                  placeholder="@username"
+                  placeholder="Telegram: @username"
                   className="w-full bg-bg-secondary border border-white/10 rounded-xl px-6 py-4 text-white placeholder-text-muted focus:outline-none focus:border-accent-primary transition-colors"
                 />
               </div>

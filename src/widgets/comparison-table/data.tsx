@@ -12,7 +12,7 @@ export const metrics: Metric[] = [
   {
     id: "speed",
     label: "Скорость загрузки",
-    icon: <Zap size={16} />,
+    icon: <Zap className="size-3 md:size-4" />,
     webflow: { value: 40, type: "bar", text: "Средняя" },
     wordpress: { value: 35, type: "bar", text: "Зависит от плагинов" },
     nextjs: { value: 98, type: "bar", text: "Молниеносная" },
@@ -20,7 +20,7 @@ export const metrics: Metric[] = [
   {
     id: "flexibility",
     label: "Гибкость разработки",
-    icon: <Layers size={16} />,
+    icon: <Layers className="size-3 md:size-4" />,
     webflow: { value: 50, type: "bar", text: "Ограничена платформой" },
     wordpress: { value: 65, type: "bar", text: "Высокая (плагины)" },
     nextjs: { value: 100, type: "bar", text: "Безграничная" },
@@ -28,7 +28,7 @@ export const metrics: Metric[] = [
   {
     id: "seo",
     label: "SEO Контроль",
-    icon: <Search size={16} />,
+    icon: <Search className="size-3 md:size-4" />,
     webflow: { value: 70, type: "bar", text: "Базовый" },
     wordpress: { value: 85, type: "bar", text: "Хороший" },
     nextjs: { value: 100, type: "bar", text: "Полный контроль" },
@@ -36,7 +36,7 @@ export const metrics: Metric[] = [
   {
     id: "scale",
     label: "Масштабируемость",
-    icon: <TrendingUp size={16} />,
+    icon: <TrendingUp className="size-3 md:size-4" />,
     webflow: { value: 30, type: "bar", text: "Низкая" },
     wordpress: { value: 50, type: "bar", text: "Средняя" },
     nextjs: { value: 100, type: "bar", text: "Enterprise уровень" },
@@ -44,7 +44,7 @@ export const metrics: Metric[] = [
   {
     id: "ownership",
     label: "Владение кодом",
-    icon: <Code size={16} />,
+    icon: <Code className="size-3 md:size-4" />,
     webflow: {
       value: "Нет",
       type: "status",
@@ -67,7 +67,7 @@ export const metrics: Metric[] = [
   {
     id: "cost",
     label: "Стоимость/год*",
-    icon: <DollarSign size={16} />,
+    icon: <DollarSign className="size-3 md:size-4" />,
     webflow: { value: "$3,500+", type: "text" },
     wordpress: { value: "$500+", type: "text" },
     nextjs: { value: "от $0", type: "text", status: "success" },
