@@ -33,7 +33,7 @@ export function Button({
 
       {/* Shine effect for primary button */}
       {variant === 'primary' && (
-        <div className="absolute inset-0 -translate-x-full group-hover:animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
+        <div className="absolute inset-0 -translate-x-full group-hover:animate-shimmer bg-linear-to-r from-transparent via-white/20 to-transparent z-0" />
       )}
     </button>
   )
