@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Studio - Управление контентом',
+  title: 'SIMPL - Управление контентом',
   description: 'Sanity Studio для управления контентом сайта',
 }
 

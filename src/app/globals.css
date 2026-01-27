@@ -237,24 +237,49 @@ body {
   transform: translateY(0);
 }
 
-/* ===== Tab Transition Animations ===== */
-@keyframes tab-slide-up {
+/* ===== Tab Panel Animations ===== */
+@keyframes tab-enter {
   0% {
     opacity: 0;
-    transform: translateY(60px) scale(0.97);
+    transform: translateY(40px) scale(0.96);
+    filter: blur(4px);
   }
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
+    filter: blur(0);
   }
 }
 
-.tab-content-animated[data-state="active"] {
-  animation: tab-slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+@keyframes tab-exit {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.98);
+    filter: blur(4px);
+  }
 }
 
-.tab-content-animated[data-state="inactive"] {
-  display: none;
+.tab-panel {
+  will-change: opacity, transform, filter;
+}
+
+.tab-panel-enter {
+  position: relative;
+  z-index: 1;
+  animation: tab-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.tab-panel-exit {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  animation: tab-exit 0.35s cubic-bezier(0.4, 0, 1, 1) forwards;
 }
 
 /* ===== Scrollbar Utilities ===== */

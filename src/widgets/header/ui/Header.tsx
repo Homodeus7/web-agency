@@ -5,12 +5,18 @@ export function Header() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-bg-primary/80 backdrop-blur-md border-b border-white/5">
       <Container className="h-20 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-display font-bold">
-          Studio.
+        <Link
+          href="/"
+          className="text-2xl font-display font-bold text-[#00AEEF] uppercase"
+        >
+          simpl
         </Link>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-text-secondary">
-          <Link href="#solutions" className="hover:text-white transition-colors">
+          <Link
+            href="#solutions"
+            className="hover:text-white transition-colors"
+          >
             Решения
           </Link>
           {/* <Link href="#cases" className="hover:text-white transition-colors">

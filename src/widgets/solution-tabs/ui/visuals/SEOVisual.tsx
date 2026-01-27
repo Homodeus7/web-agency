@@ -16,17 +16,17 @@ export function SEOVisual() {
         <div className="p-4 rounded-lg bg-white/5 border border-white/10">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-6 h-6 rounded-full bg-accent-primary/20 flex items-center justify-center">
-              <span className="text-accent-primary text-xs font-bold">S</span>
+              <span className="text-accent-primary text-xs font-bold">Si</span>
             </div>
             <div>
-              <div className="text-xs text-text-secondary">studio.dev</div>
+              <div className="text-xs text-text-secondary">simpl.dev</div>
               <div className="text-xs text-text-secondary/60">
-                https://studio.dev
+                https://simpl.dev
               </div>
             </div>
           </div>
           <div className="text-blue-400 text-sm font-medium mb-1 hover:underline cursor-pointer">
-            Studio | Создание сайтов на Next.js + Sanity
+            SIMPL | Создание сайтов на Next.js + Sanity
           </div>
           <div className="text-xs text-text-secondary leading-relaxed">
             Разрабатываем быстрые бизнес-сайты на Next.js и Sanity CMS.

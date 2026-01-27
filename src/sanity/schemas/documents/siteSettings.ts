@@ -13,7 +13,7 @@ export const siteSettings = defineType({
     }),
     defineField({
       name: 'siteDescription',
-      title: 'Описание сайта (SEO)',
+      title: 'Описание сайта',
       type: 'text',
       rows: 3,
     }),
@@ -40,6 +40,16 @@ export const siteSettings = defineType({
       title: 'Социальные сети',
       type: 'object',
       fields: [
+        defineField({
+          name: 'telegram',
+          title: 'Telegram',
+          type: 'url',
+        }),
+        defineField({
+          name: 'vk',
+          title: 'ВКонтакте',
+          type: 'url',
+        }),
         defineField({
           name: 'twitter',
           title: 'Twitter',

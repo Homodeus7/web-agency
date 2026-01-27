@@ -9,7 +9,7 @@ export const footerSection = defineType({
       name: 'brandName',
       title: 'Название бренда',
       type: 'string',
-      initialValue: 'Studio.',
+      initialValue: 'SIMPL',
     }),
     defineField({
       name: 'brandDescription',
@@ -36,7 +36,7 @@ export const footerSection = defineType({
       title: 'Текст копирайта',
       type: 'string',
       description: 'Используйте {year} для автоподстановки года',
-      initialValue: '© {year} Studio. Все права защищены.',
+      initialValue: '© {year} SIMPL Все права защищены.',
     }),
   ],
 })

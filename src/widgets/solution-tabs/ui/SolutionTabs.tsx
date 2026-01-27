@@ -5,7 +5,7 @@ import { Container, SectionHeading } from "@/shared/ui";
 import { cn } from "@/shared/lib/cn";
 import type { SolutionData } from "@/sanity/lib/types";
 import { TabVisual } from "./TabVisual";
-import { useScrollHijack } from "../lib";
+import { useState } from "react";
 
 interface SolutionTabsProps {
   title: string;
@@ -13,14 +13,10 @@ interface SolutionTabsProps {
 }
 
 export function SolutionTabs({ title, solutions }: SolutionTabsProps) {
-  const tabIds = solutions.map((s) => s.id);
-
-  const { sectionRef, activeId, setActiveId, isLocked, currentIndex } =
-    useScrollHijack({ itemIds: tabIds });
+  const [activeId, setActiveId] = useState(solutions[0]?.id ?? "");
 
   return (
     <section
-      ref={sectionRef}
       id="solutions"
       className="py-24 bg-bg-primary relative overflow-hidden"
     >
@@ -28,25 +24,6 @@ export function SolutionTabs({ title, solutions }: SolutionTabsProps) {
         <SectionHeading badge="Решение" badgeVariant="accent">
           {title}
         </SectionHeading>
-
-        {/* Progress indicator */}
-        {isLocked && (
-          <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-2">
-            {tabIds.map((id, idx) => (
-              <div
-                key={id}
-                className={cn(
-                  "w-1.5 h-8 rounded-full transition-all duration-300",
-                  idx === currentIndex
-                    ? "bg-accent-primary scale-110"
-                    : idx < currentIndex
-                      ? "bg-accent-primary/50"
-                      : "bg-white/20",
-                )}
-              />
-            ))}
-          </div>
-        )}
 
         <Tabs.Root value={activeId} onValueChange={setActiveId}>
           <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
@@ -87,12 +64,18 @@ export function SolutionTabs({ title, solutions }: SolutionTabsProps) {
               ))}
             </Tabs.List>
 
-            <div className="w-full lg:col-span-8">
+            <div className="w-full lg:col-span-8 relative">
               {solutions.map((tab) => (
                 <Tabs.Content
                   key={tab.id}
                   value={tab.id}
-                  className="h-full tab-content-animated"
+                  forceMount
+                  className={cn(
+                    "h-full tab-panel",
+                    activeId === tab.id
+                      ? "tab-panel-enter"
+                      : "tab-panel-exit",
+                  )}
                 >
                   <TabContent tab={tab} />
                 </Tabs.Content>

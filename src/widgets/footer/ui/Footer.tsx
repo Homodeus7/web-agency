@@ -57,7 +57,7 @@ const SocialIcon = ({ platform }: { platform: SocialLinkData["platform"] }) => {
 
 // Дефолтные данные для обратной совместимости
 const defaultFooterData: FooterData = {
-  brandName: "Studio.",
+  brandName: "simpl",
   brandDescription:
     "Создаем сайты, которые стимулируют рост бизнеса. Производительность, масштабируемость и превосходный дизайн без компромиссов.",
   linkColumns: [
@@ -81,7 +81,7 @@ const defaultFooterData: FooterData = {
     },
   ],
   socialLinks: [{ platform: "telegram", url: "https://t.me/awaitMeBro" }],
-  copyrightText: "© {year} Studio. Все права защищены.",
+  copyrightText: "© {year} SIMPL Все права защищены.",
 };
 
 export function Footer({ data }: FooterProps) {
@@ -89,7 +89,7 @@ export function Footer({ data }: FooterProps) {
   const currentYear = new Date().getFullYear();
   const copyrightText =
     footerData.copyrightText?.replace("{year}", String(currentYear)) ||
-    `© ${currentYear} Studio. Все права защищены.`;
+    `© ${currentYear} SIMPL Все права защищены.`;
 
   return (
     <footer className="bg-black border-t border-white/5 pt-16 pb-8">
@@ -98,7 +98,7 @@ export function Footer({ data }: FooterProps) {
           <div className="col-span-1 md:col-span-2">
             <Link
               href="/"
-              className="text-2xl font-display font-bold text-white mb-4 block"
+              className="text-2xl font-display font-bold text-[#00AEEF] uppercase"
             >
               {footerData.brandName}
             </Link>
