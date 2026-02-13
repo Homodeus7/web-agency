@@ -145,13 +145,15 @@ export function CTA({ data }: CTAProps) {
                   className="w-full bg-bg-secondary border border-white/10 rounded-xl px-6 py-4 text-white placeholder-text-muted focus:outline-none focus:border-accent-primary transition-colors"
                 />
               </div>
-              <Button
-                type="submit"
-                className="w-full py-4 text-lg"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Отправка..." : data.buttonText}
-              </Button>
+              <div>
+                <Button
+                  type="submit"
+                  className="w-full py-4 text-lg h-14"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Отправка..." : data.buttonText}
+                </Button>
+              </div>
               {data.contactEmail && (
                 <p className="text-center text-xs text-text-muted mt-4">
                   Или напишите нам:{" "}

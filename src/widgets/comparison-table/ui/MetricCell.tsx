@@ -1,71 +1,62 @@
 import type { MetricValue, Platform } from "../types";
-import { ProgressBar } from "./ProgressBar";
-import { StatusIcon } from "./StatusIcon";
 
 interface MetricCellProps {
   data: MetricValue;
   platform: Platform;
+  isHighlighted?: boolean;
 }
 
-const platformStyles = {
-  webflow: {
-    barColor: "bg-slate-600",
-    textClass: "text-slate-400",
-    cellClass: "border-r border-slate-800/30",
-  },
-  wordpress: {
-    barColor: "bg-slate-500",
-    textClass: "text-slate-400",
-    cellClass: "border-r border-slate-800/30",
-  },
-  nextjs: {
-    barColor:
-      "bg-linear-to-r from-blue-500 to-indigo-400 shadow-[0_0_10px_rgba(59,130,246,0.4)]",
-    textClass: "text-blue-200 font-medium",
-    cellClass: "bg-blue-500/5 relative",
-  },
-} as const;
-
-export function MetricCell({ data, platform }: MetricCellProps) {
-  const styles = platformStyles[platform];
+export function MetricCell({ data, platform, isHighlighted }: MetricCellProps) {
   const isNextjs = platform === "nextjs";
 
   return (
-    <div className={`p-3 md:p-6 flex flex-col justify-center ${styles.cellClass}`}>
-      {isNextjs && (
-        <div className="absolute inset-y-0 left-0 w-px bg-blue-500/10" />
-      )}
-
+    <div className="px-4 md:px-6 flex flex-col justify-center gap-1">
+      {/* Bar Type */}
       {data.type === "bar" && typeof data.value === "number" && (
         <>
-          <span className={`text-xs md:text-sm ${styles.textClass} line-clamp-1 mb-1`}>
+          <span
+            className={`text-base md:text-lg font-mono ${
+              isHighlighted
+                ? "text-cyan-400"
+                : "text-gray-400 group-hover:text-white transition-colors"
+            }`}
+          >
             {data.text}
           </span>
-          {isNextjs ? (
-            <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden mt-2 relative">
-              <div className="absolute inset-0 bg-blue-500/20 animate-pulse" />
-              <div
-                className={`h-full rounded-full ${styles.barColor}`}
-                style={{ width: `${data.value}%` }}
-              />
-            </div>
-          ) : (
-            <ProgressBar value={data.value} colorClass={styles.barColor} />
+          <span className="text-xs md:text-sm text-gray-500 uppercase tracking-wider">
+            {data.value}%
+          </span>
+        </>
+      )}
+
+      {/* Status Type */}
+      {data.type === "status" && (
+        <>
+          <span
+            className={`text-base md:text-lg font-mono ${
+              isHighlighted
+                ? "text-cyan-400"
+                : "text-gray-400 group-hover:text-white transition-colors"
+            }`}
+          >
+            {data.value}
+          </span>
+          {data.text && (
+            <span className="text-xs md:text-sm text-gray-500 uppercase tracking-wider">
+              {data.text}
+            </span>
           )}
         </>
       )}
 
-      {data.type === "status" && (
-        <StatusIcon status={data.status} text={data.text || ""} />
-      )}
-
+      {/* Text Type - Special styling for highlighted column */}
       {data.type === "text" && (
         <span
-          className={
-            isNextjs
-              ? "text-lg md:text-xl font-bold text-emerald-400 tracking-tight drop-shadow-[0_0_8px_rgba(52,211,153,0.3)]"
-              : "text-base md:text-lg font-medium text-slate-400"
-          }
+          className={`text-xl md:text-2xl font-medium ${
+            isHighlighted
+              ? "text-cyan-400"
+              : "text-gray-400 group-hover:text-white transition-colors"
+          }`}
         >
           {data.value}
         </span>

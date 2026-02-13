@@ -6,27 +6,26 @@ interface MetricRowProps {
   isLast: boolean;
 }
 
-const STICKY_CELL_CLASS =
-  "sticky left-0 z-10 bg-slate-900/95 backdrop-blur-sm after:absolute after:right-0 after:top-0 after:bottom-0 after:w-4 after:bg-linear-to-r after:from-slate-900/80 after:to-transparent after:pointer-events-none md:after:hidden";
-
 export function MetricRow({ metric, isLast }: MetricRowProps) {
   return (
     <div
-      className={`grid grid-cols-4 border-b border-slate-800/40 hover:bg-slate-800/20 transition-colors group ${isLast ? "border-b-0" : ""}`}
+      className={`group relative grid grid-cols-[30%_23.33%_23.33%_23.33%] min-w-[800px] py-6 md:py-8 border-b border-white/10 hover:bg-white/5 transition-colors cursor-pointer ${
+        isLast ? "border-b-0" : ""
+      }`}
     >
       {/* Label Column */}
-      <div
-        className={`max-w-36 md:max-w-full p-4 md:p-6 flex items-center gap-2 md:gap-3 text-slate-300 font-medium text-xs md:text-base ${STICKY_CELL_CLASS}`}
-      >
-        <div className="p-1.5 md:p-2 rounded-lg bg-slate-800 text-slate-400 group-hover:text-white transition-colors shrink-0">
+      <div className="px-4 md:px-6 flex items-center gap-3">
+        <div className="text-white/50 group-hover:text-white transition-colors shrink-0">
           {metric.icon}
         </div>
-        <span className="line-clamp-2">{metric.label}</span>
+        <span className="text-base md:text-lg text-white/80 group-hover:text-white transition-colors font-medium">
+          {metric.label}
+        </span>
       </div>
 
       <MetricCell data={metric.webflow} platform="webflow" />
       <MetricCell data={metric.wordpress} platform="wordpress" />
-      <MetricCell data={metric.nextjs} platform="nextjs" />
+      <MetricCell data={metric.nextjs} platform="nextjs" isHighlighted />
     </div>
   );
 }

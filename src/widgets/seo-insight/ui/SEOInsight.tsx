@@ -40,8 +40,8 @@ export function SEOInsight({ title, description, cards }: SEOInsightProps) {
     <section className="py-24 bg-bg-primary relative overflow-hidden">
       <Container className="relative z-10">
         <SectionHeading
-          badge="SEO Экспертиза"
-          badgeVariant="green"
+          variant="minimalist"
+          subtitle="// SEO & ЭКСПЕРТИЗА"
           description={description}
         >
           {title}

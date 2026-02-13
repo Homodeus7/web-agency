@@ -10,7 +10,13 @@ export function ProcessSteps({ title, steps }: ProcessStepsProps) {
   return (
     <section className="py-24 bg-bg-primary">
       <Container>
-        <SectionHeading>{title}</SectionHeading>
+        <SectionHeading
+          variant="minimalist"
+          subtitle="// ПРОЦЕСС & ЭТАПЫ"
+          description="От идеи до запуска — прозрачный процесс разработки"
+        >
+          {title}
+        </SectionHeading>
 
         <AnimatedSection stagger>
           <div className="grid md:grid-cols-4 gap-8 relative">

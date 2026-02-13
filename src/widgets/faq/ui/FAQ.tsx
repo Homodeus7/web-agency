@@ -13,10 +13,16 @@ interface FAQProps {
 export function FAQ({ title, items }: FAQProps) {
   return (
     <section className="py-24 bg-bg-secondary">
-      <Container className="max-w-3xl">
-        <SectionHeading>{title}</SectionHeading>
+      <Container>
+        <SectionHeading
+          variant="minimalist"
+          subtitle="// ВОПРОСЫ & ОТВЕТЫ"
+          description="Ответы на частые вопросы о разработке на Next.js"
+        >
+          {title}
+        </SectionHeading>
 
-        <Accordion.Root type="single" defaultValue="item-0" collapsible className="space-y-4">
+        <Accordion.Root type="single" defaultValue="item-0" collapsible className="space-y-4 max-w-3xl mx-auto">
           {items.map((item, i) => (
             <Accordion.Item
               key={i}

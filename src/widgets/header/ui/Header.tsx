@@ -1,16 +1,11 @@
 import Link from "next/link";
-import { Container } from "@/shared/ui";
+import { Container, Logo } from "@/shared/ui";
 
 export function Header() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-bg-primary/80 backdrop-blur-md border-b border-white/5">
       <Container className="h-20 flex items-center justify-between">
-        <Link
-          href="/"
-          className="text-2xl font-display font-bold text-[#00AEEF] uppercase"
-        >
-          simpl
-        </Link>
+        <Logo size="sm" />
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-text-secondary">
           <Link

@@ -3,7 +3,6 @@ import {
   Hero,
   ProblemSection,
   SolutionTabs,
-  SEOInsight,
   ComparisonTable,
   ProcessSteps,
   TechStack,
@@ -11,36 +10,45 @@ import {
   FAQ,
   CTA,
   Footer,
-} from '@/widgets'
-import { client } from '@/sanity/lib/client'
-import { homePageQuery } from '@/sanity/lib/queries'
-import type { HomePageData, FAQItemData, PricingPlanData } from '@/sanity/lib/types'
+} from "@/widgets";
+import { client } from "@/sanity/lib/client";
+import { homePageQuery } from "@/sanity/lib/queries";
+import type {
+  HomePageData,
+  FAQItemData,
+  PricingPlanData,
+} from "@/sanity/lib/types";
 
-export const dynamic = 'force-static'
+export const revalidate = 60; // ISR: обновление каждые 60 секунд
 
 // === SEO КОНФИГУРАЦИЯ ===
-const SITE_NAME = 'SIMPL'
-const SITE_URL = 'https://example.ru'
-const SITE_DESCRIPTION = 'Создаем современные бизнес-сайты на Next.js и Sanity CMS'
+const SITE_NAME = "SIMPL";
+const SITE_URL = "https://example.ru";
+const SITE_DESCRIPTION =
+  "Создаем современные бизнес-сайты на Next.js и Sanity CMS";
 
 async function getHomePageData(): Promise<HomePageData> {
-  const data = await client.fetch<HomePageData>(homePageQuery, {}, { cache: 'force-cache' })
+  const data = await client.fetch<HomePageData>(
+    homePageQuery,
+    {},
+    { next: { revalidate: 60 } },
+  );
 
   if (!data) {
-    throw new Error('HomePage data not found in Sanity. Run: npm run seed')
+    throw new Error("HomePage data not found in Sanity. Run: npm run seed");
   }
 
-  return data
+  return data;
 }
 
 // JSON-LD структурированные данные
 function generateJsonLd(data: HomePageData) {
-  const schemas = []
+  const schemas = [];
 
   // Organization
   schemas.push({
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
+    "@context": "https://schema.org",
+    "@type": "Organization",
     name: SITE_NAME,
     url: SITE_URL,
     description: SITE_DESCRIPTION,
@@ -52,79 +60,79 @@ function generateJsonLd(data: HomePageData) {
     //   addressLocality: 'Москва',
     //   addressCountry: 'RU',
     // },
-  })
+  });
 
   // WebSite
   schemas.push({
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
+    "@context": "https://schema.org",
+    "@type": "WebSite",
     name: SITE_NAME,
     url: SITE_URL,
     description: SITE_DESCRIPTION,
-    inLanguage: 'ru-RU',
-  })
+    inLanguage: "ru-RU",
+  });
 
   // FAQPage
   if (data.faqItems && data.faqItems.length > 0) {
     schemas.push({
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
       mainEntity: data.faqItems.map((item: FAQItemData) => ({
-        '@type': 'Question',
+        "@type": "Question",
         name: item.question,
         acceptedAnswer: {
-          '@type': 'Answer',
+          "@type": "Answer",
           text: item.answer,
         },
       })),
-    })
+    });
   }
 
   // Service с ценами
   if (data.pricingPlans && data.pricingPlans.length > 0) {
     schemas.push({
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      serviceType: 'Веб-разработка',
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "Веб-разработка",
       provider: {
-        '@type': 'Organization',
+        "@type": "Organization",
         name: SITE_NAME,
       },
       areaServed: {
-        '@type': 'Country',
-        name: 'Россия',
+        "@type": "Country",
+        name: "Россия",
       },
-      description: 'Разработка сайтов на Next.js и Sanity CMS',
+      description: "Разработка сайтов на Next.js и Sanity CMS",
       offers: data.pricingPlans.map((plan: PricingPlanData) => ({
-        '@type': 'Offer',
+        "@type": "Offer",
         name: plan.name,
-        price: plan.price.replace(/[^\d]/g, ''),
-        priceCurrency: 'RUB',
+        price: plan.price.replace(/[^\d]/g, ""),
+        priceCurrency: "RUB",
         description: plan.description,
       })),
-    })
+    });
   }
 
   // BreadcrumbList
   schemas.push({
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
     itemListElement: [
       {
-        '@type': 'ListItem',
+        "@type": "ListItem",
         position: 1,
-        name: 'Главная',
+        name: "Главная",
         item: SITE_URL,
       },
     ],
-  })
+  });
 
-  return schemas
+  return schemas;
 }
 
 export default async function HomePage() {
-  const data = await getHomePageData()
-  const jsonLd = generateJsonLd(data)
+  const data = await getHomePageData();
+  const jsonLd = generateJsonLd(data);
 
   return (
     <>
@@ -149,31 +157,19 @@ export default async function HomePage() {
           title={data.solutionsTitle!}
           solutions={data.solutions!}
         />
-        <SEOInsight
+        {/* <SEOInsight
           title={data.seoTitle!}
           description={data.seoDescription!}
           cards={data.seoCards!}
-        />
+        /> */}
         <ComparisonTable />
-        <ProcessSteps
-          title={data.processTitle!}
-          steps={data.processSteps!}
-        />
-        <TechStack
-          title={data.techTitle!}
-          items={data.techItems!}
-        />
-        <Pricing
-          title={data.pricingTitle!}
-          plans={data.pricingPlans!}
-        />
-        <FAQ
-          title={data.faqTitle!}
-          items={data.faqItems!}
-        />
+        <ProcessSteps title={data.processTitle!} steps={data.processSteps!} />
+        <TechStack title={data.techTitle!} items={data.techItems!} />
+        <Pricing title={data.pricingTitle!} plans={data.pricingPlans!} />
+        <FAQ title={data.faqTitle!} items={data.faqItems!} />
         <CTA data={data.cta!} />
       </main>
       <Footer data={data.footer} />
     </>
-  )
+  );
 }

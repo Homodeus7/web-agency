@@ -21,7 +21,11 @@ export function ProblemSection({ title, description, problems }: ProblemSectionP
   return (
     <section className="py-24 bg-bg-secondary relative">
       <Container>
-        <SectionHeading description={description}>
+        <SectionHeading
+          variant="minimalist"
+          subtitle="// ПРОБЛЕМЫ & ВЫЗОВЫ"
+          description={description}
+        >
           {title}
         </SectionHeading>
 

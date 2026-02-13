@@ -1,4 +1,4 @@
-import { Container } from '@/shared/ui'
+import { Container, SectionHeading } from '@/shared/ui'
 import type { TechItemData } from '@/sanity/lib/types'
 
 interface TechStackProps {
@@ -10,11 +10,13 @@ export function TechStack({ title, items }: TechStackProps) {
   return (
     <section className="py-24 bg-bg-secondary border-y border-white/5">
       <Container>
-        <div className="text-center mb-12">
-          <h2 className="text-2xl font-display font-bold text-text-secondary uppercase tracking-widest">
-            {title}
-          </h2>
-        </div>
+        <SectionHeading
+          variant="minimalist"
+          subtitle="// ТЕХНОЛОГИИ & ИНСТРУМЕНТЫ"
+          description="Современный стек технологий для вашего проекта"
+        >
+          {title}
+        </SectionHeading>
 
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
           {items.map((tech, i) => (

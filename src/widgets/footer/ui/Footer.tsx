@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Container } from "@/shared/ui";
+import { Container, Logo } from "@/shared/ui";
 import type { FooterData, SocialLinkData } from "@/sanity/lib/types";
 
 interface FooterProps {
@@ -95,16 +95,8 @@ export function Footer({ data }: FooterProps) {
     <footer className="bg-black border-t border-white/5 pt-16 pb-8">
       <Container>
         <div className="grid md:grid-cols-3 gap-12 mb-12">
-          <div className="col-span-1 md:col-span-2">
-            <Link
-              href="/"
-              className="text-2xl font-display font-bold text-[#00AEEF] uppercase"
-            >
-              {footerData.brandName}
-            </Link>
-            <p className="text-text-secondary md:max-w-lg">
-              {footerData.brandDescription}
-            </p>
+          <div>
+            <Logo size="md" />
           </div>
           <div className="grid grid-cols-2">
             {footerData.linkColumns?.map((column, index) => (

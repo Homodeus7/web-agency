@@ -1,8 +1,8 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
 import { Button, Container } from "@/shared/ui";
 import type { HeroData } from "@/sanity/lib/types";
+import Aurora from "@/components/Aurora";
 
 interface HeroProps {
   data: HeroData;
@@ -13,56 +13,58 @@ export function Hero({ data }: HeroProps) {
 
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        <div className="absolute top-[-10%] right-[-5%] w-125 h-125 bg-accent-primary/20 rounded-full blur-[100px] animate-blob" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-125 h-125 bg-accent-secondary/20 rounded-full blur-[100px] animate-blob [animation-delay:2s]" />
+      {/* Aurora Background Effect */}
+      <div className="absolute inset-0 z-0">
+        <Aurora
+          colorStops={["#3730a3", "#0e7490", "#6d28d9"]}
+          amplitude={1}
+          blend={0.55}
+        />
       </div>
 
       <Container className="relative z-10">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 animate-in">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-sm font-medium text-text-secondary">
+          {data.badge && (
+            <span className="uppercase text-xs text-slate-100/90 tracking-wider mb-3">
               {data.badge}
             </span>
-          </div>
+          )}
 
           {/* Heading */}
-          <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight tracking-tight mb-6 animate-in animate-delay-100">
-            {data.title} <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-primary via-accent-secondary to-accent-primary animate-gradient-x">
+          <h1
+            className="text-4xl sm:text-5xl lg:text-6xl leading-tight tracking-tight"
+            style={{ fontWeight: 600 }}
+          >
+            {data.title}{" "}
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-primary via-accent-secondary to-accent-primary">
               {data.highlightedText}
             </span>
           </h1>
 
           {/* Description */}
-          <p className="text-xl text-text-secondary mb-10 max-w-2xl leading-relaxed animate-in animate-delay-200">
+          <p className="mt-6 text-lg text-gray-300 max-w-xl mx-auto">
             {data.description}
-            {data.descriptionHighlight && (
-              <span className="text-text-primary block mt-2 font-medium">
-                {data.descriptionHighlight}
-              </span>
-            )}
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-in animate-delay-300">
+          <div className="flex flex-col sm:flex-row gap-3 mt-8 justify-center">
             <Button
+              variant="primary"
+              className="h-14 px-8 text-xl"
               onClick={() =>
                 document
                   .getElementById("cta")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              {data.primaryButtonText} <ArrowRight className="w-4 h-4" />
+              {data.primaryButtonText}
             </Button>
             {/* <Button variant="secondary">{data.secondaryButtonText}</Button> */}
           </div>
 
           {/* Trust Badges */}
-          {trustLogos.length > 0 && (
+          {/* {trustLogos.length > 0 && (
             <div className="mt-20 pt-10 border-t border-white/5 w-full animate-in animate-delay-500">
               <p className="text-sm text-text-muted mb-6 uppercase tracking-widest">
                 {data.trustBadgesTitle}
@@ -79,7 +81,7 @@ export function Hero({ data }: HeroProps) {
                 ))}
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </Container>
     </section>
