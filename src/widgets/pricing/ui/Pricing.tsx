@@ -30,7 +30,7 @@ export function Pricing({ title, plans }: PricingProps) {
       <Container>
         <SectionHeading
           variant="minimalist"
-          description="Выберите оптимальное решение для вашего бизнеса"
+          description="Выберите оптимальное решение"
         >
           {title}
         </SectionHeading>
