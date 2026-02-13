@@ -1,21 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { Container, SectionHeading, AnimatedGradientCard } from "@/shared/ui";
+import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
 import type { SolutionData } from "@/sanity/lib/types";
 import { Zap, TrendingUp, Gauge, Search, Check } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-
-const ScrollStack = dynamic(() => import("@/components/ScrollStack").then((mod) => mod.default), {
-  ssr: false,
-  loading: () => <div className="min-h-100 flex items-center justify-center">
-    <div className="text-neutral-400">Загрузка...</div>
-  </div>,
-});
-
-const ScrollStackItem = dynamic(() => import("@/components/ScrollStack").then((mod) => mod.ScrollStackItem), {
-  ssr: false,
-});
 
 interface SolutionTabsProps {
   title: string;
