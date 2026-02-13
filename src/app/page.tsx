@@ -1,16 +1,14 @@
-import {
-  Header,
-  Hero,
-  ProblemSection,
-  SolutionTabs,
-  ComparisonTable,
-  ProcessSteps,
-  TechStack,
-  Pricing,
-  FAQ,
-  CTA,
-  Footer,
-} from "@/widgets";
+import { Header } from "@/widgets/header";
+import { Hero } from "@/widgets/hero";
+import { ProblemSection } from "@/widgets/problem-section";
+import { SolutionTabs } from "@/widgets/solution-tabs";
+import { ComparisonTable } from "@/widgets/comparison-table";
+import { ProcessSteps } from "@/widgets/process-steps";
+import { TechStack } from "@/widgets/tech-stack";
+import { Pricing } from "@/widgets/pricing";
+import { FAQ } from "@/widgets/faq";
+import { CTA } from "@/widgets/cta";
+import { Footer } from "@/widgets/footer";
 import { client } from "@/sanity/lib/client";
 import { homePageQuery } from "@/sanity/lib/queries";
 import type {

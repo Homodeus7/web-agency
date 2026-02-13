@@ -1,8 +1,15 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Button, Container } from "@/shared/ui";
 import type { HeroData } from "@/sanity/lib/types";
-import Aurora from "@/components/Aurora";
+
+const Aurora = dynamic(() => import("@/components/Aurora"), {
+  ssr: false,
+  loading: () => (
+    <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/20 to-transparent" />
+  ),
+});
 
 interface HeroProps {
   data: HeroData;

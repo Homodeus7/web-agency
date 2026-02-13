@@ -135,8 +135,8 @@ export function Footer({ data }: FooterProps) {
     `© ${currentYear} SIMPL Все права защищены.`;
 
   return (
-    <footer className="sm:px-6 lg:px-8 lg:ml-auto lg:mr-auto lg:mb-16 max-w-7xl mt-16 mr-auto mb-16 ml-auto pr-4 pl-4">
-      <div className="sm:rounded-[32px] sm:p-8 bg-neutral-900/40 rounded-[24px] pt-5 pr-5 pb-5 pl-5 backdrop-blur">
+    <footer className="sm:px-6 lg:px-8 lg:ml-auto lg:mr-auto  max-w-7xl mt-16 mr-auto ml-auto pr-4 pl-4">
+      <div className=" sm:p-8 pt-5 pr-5 pb-5 pl-5 ">
         <div className="flex justify-between">
           {/* Brand */}
           <div>

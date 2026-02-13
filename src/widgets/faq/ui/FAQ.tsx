@@ -60,7 +60,7 @@ export function FAQ({ title, items }: FAQProps) {
                 </Accordion.Header>
 
                 <Accordion.Content className="data-[state=open]:animate-slide-down data-[state=closed]:animate-slide-up overflow-hidden">
-                  <div className="px-6 pb-6 pl-[4.5rem] text-white/70 leading-relaxed">
+                  <div className="px-6 pb-6 pl-18 text-white/70 leading-relaxed">
                     {item.answer}
                   </div>
                 </Accordion.Content>
