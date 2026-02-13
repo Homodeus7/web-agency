@@ -20,8 +20,7 @@ export function SolutionTabs({ title, solutions }: SolutionTabsProps) {
       <Container>
         <SectionHeading
           variant="minimalist"
-          subtitle="// РЕШЕНИЕ & ТЕХНОЛОГИИ"
-          description="Современный подход к разработке веб-приложений"
+          description="Современный подход к разработке"
         >
           {title}
         </SectionHeading>
@@ -153,7 +152,11 @@ function SolutionCard({ solution }: SolutionCardProps) {
                 className="flex h-4 w-4 items-center justify-center rounded-full shrink-0"
                 style={{ backgroundColor: colors.checkBg }}
               >
-                <Check className="h-3 w-3" stroke="hsl(0, 0%, 7%)" strokeWidth={3} />
+                <Check
+                  className="h-3 w-3"
+                  stroke="hsl(0, 0%, 7%)"
+                  strokeWidth={3}
+                />
               </div>
               <span className="leading-tight">{feature}</span>
             </li>

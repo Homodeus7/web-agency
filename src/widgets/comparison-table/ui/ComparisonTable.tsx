@@ -13,19 +13,18 @@ export function ComparisonTable() {
       <Container>
         <SectionHeading
           variant="minimalist"
-          subtitle="// ПЛАТФОРМЫ & ВОЗМОЖНОСТИ"
-          description="Честное сравнение платформ для разработки современных веб-проектов"
+          description="Честное сравнение платформ"
         >
           Сравнение
         </SectionHeading>
 
         {/* Minimalist Table Container */}
-        <div className="w-full relative overflow-hidden bg-gradient-to-br from-white/5 via-white/0 to-white/5">
+        <div className="w-full relative overflow-hidden bg-linear-to-br from-white/5 via-white/0 to-white/5">
           <div className="overflow-x-auto">
             <TableHeader />
 
             {/* Table Body */}
-            <div className="min-w-[800px]">
+            <div className="min-w-200">
               {metrics.map((metric, index) => (
                 <MetricRow
                   key={metric.id}
@@ -37,7 +36,7 @@ export function ComparisonTable() {
           </div>
 
           {/* Footer Note */}
-          <div className="px-4 md:px-6 py-4 border-t border-white/5 bg-white/[0.02]">
+          <div className="px-4 md:px-6 py-4 border-t border-white/5 bg-white/2">
             <div className="flex items-start gap-2 text-white/40 text-xs">
               <Info size={14} className="mt-0.5 shrink-0" />
               <p>

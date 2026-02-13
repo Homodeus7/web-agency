@@ -109,6 +109,17 @@
       height: 0;
     }
   }
+
+  @keyframes line-expand {
+    from {
+      transform: scaleX(0);
+      opacity: 0;
+    }
+    to {
+      transform: scaleX(1);
+      opacity: 0.3;
+    }
+  }
 }
 
 /* ===== Base Styles ===== */
@@ -162,6 +173,21 @@ body {
   border-radius: 1rem;
 }
 
+.border-gradient {
+  position: relative;
+  border: 1px solid transparent;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-image:
+    linear-gradient(to bottom, transparent, transparent),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.1)
+    );
+}
+
 .noise-bg {
   position: fixed;
   top: 0;
@@ -213,10 +239,11 @@ body {
 /* Staggered animations */
 [data-animate-stagger] > * {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(30px);
   transition:
-    opacity 0.5s ease-out,
-    transform 0.5s ease-out;
+    opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
 }
 
 [data-animate-stagger].is-visible > *:nth-child(1) {
@@ -225,24 +252,46 @@ body {
   transform: translateY(0);
 }
 [data-animate-stagger].is-visible > *:nth-child(2) {
-  transition-delay: 100ms;
-  opacity: 1;
-  transform: translateY(0);
-}
-[data-animate-stagger].is-visible > *:nth-child(3) {
   transition-delay: 200ms;
   opacity: 1;
   transform: translateY(0);
 }
+[data-animate-stagger].is-visible > *:nth-child(3) {
+  transition-delay: 400ms;
+  opacity: 1;
+  transform: translateY(0);
+}
 [data-animate-stagger].is-visible > *:nth-child(4) {
-  transition-delay: 300ms;
+  transition-delay: 600ms;
   opacity: 1;
   transform: translateY(0);
 }
 [data-animate-stagger].is-visible > *:nth-child(5) {
-  transition-delay: 400ms;
+  transition-delay: 800ms;
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate-stagger] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-line-expand {
+    animation: none !important;
+    opacity: 0.3 !important;
+    transform: none !important;
+  }
+}
+
+/* Line expansion animation */
+.animate-line-expand {
+  animation: line-expand 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform-origin: center;
+  opacity: 0;
 }
 
 /* ===== Tab Panel Animations ===== */

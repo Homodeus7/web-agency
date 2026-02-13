@@ -30,7 +30,6 @@ export function Pricing({ title, plans }: PricingProps) {
       <Container>
         <SectionHeading
           variant="minimalist"
-          subtitle="// ТАРИФЫ & ПАКЕТЫ"
           description="Выберите оптимальное решение для вашего бизнеса"
         >
           {title}
@@ -93,7 +92,7 @@ export function Pricing({ title, plans }: PricingProps) {
 
                     <Button
                       variant={tier.isPopular ? "primary" : "secondary"}
-                      className="w-full"
+                      className="w-full h-12"
                       onClick={() => handleSelectPlan(tier.name)}
                     >
                       {tier.ctaText}

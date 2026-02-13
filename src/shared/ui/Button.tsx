@@ -21,11 +21,11 @@ export function Button({
   const variants = {
     primary: cn(
       "rounded-3xl px-6 py-3",
-      "bg-gradient-to-b from-blue-500/20 to-blue-600/40",
-      "text-sky-50",
-      "ring-1 ring-sky-400/20",
-      "focus-visible:ring-2 focus-visible:ring-sky-400/50",
-      "hover:bg-gradient-to-b hover:from-blue-500/25 hover:to-blue-600/50",
+      "bg-gradient-to-b from-indigo-600/20 to-indigo-700/40",
+      "text-indigo-50",
+      "ring-1 ring-indigo-500/20",
+      "focus-visible:ring-2 focus-visible:ring-indigo-500/50",
+      "hover:bg-gradient-to-b hover:from-indigo-600/25 hover:to-indigo-700/50",
     ),
     secondary: cn(
       "rounded-full px-5 py-3",
@@ -49,8 +49,8 @@ export function Button({
           className="absolute inset-0 rounded-3xl z-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(180deg, rgba(8,77,126,0) 0%, rgba(8,77,126,0.42) 100%), rgba(59,130,246,0.22)",
-            boxShadow: "inset 0 0 12px rgba(151,200,255,0.44)",
+              "linear-gradient(180deg, rgba(55,48,163,0) 0%, rgba(55,48,163,0.42) 100%), rgba(79,70,229,0.22)",
+            boxShadow: "inset 0 0 12px rgba(129,140,248,0.44)",
           }}
         />
 
@@ -59,8 +59,8 @@ export function Button({
           className="absolute inset-0 rounded-3xl z-0 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 pointer-events-none"
           style={{
             background:
-              "linear-gradient(180deg, rgba(8,77,126,0) 0%, rgba(8,77,126,0.54) 100%), rgba(59,130,246,0.30)",
-            boxShadow: "inset 0 0 14px rgba(151,200,255,0.60)",
+              "linear-gradient(180deg, rgba(55,48,163,0) 0%, rgba(55,48,163,0.54) 100%), rgba(79,70,229,0.30)",
+            boxShadow: "inset 0 0 14px rgba(129,140,248,0.60)",
           }}
         />
 
@@ -70,7 +70,7 @@ export function Button({
           style={{
             padding: "1px",
             background:
-              "linear-gradient(180deg, rgba(184,238,255,0.24) 0%, rgba(184,238,255,0) 100%), linear-gradient(0deg, rgba(184,238,255,0.32), rgba(184,238,255,0.32))",
+              "linear-gradient(180deg, rgba(165,180,252,0.24) 0%, rgba(165,180,252,0) 100%), linear-gradient(0deg, rgba(165,180,252,0.32), rgba(165,180,252,0.32))",
             WebkitMask:
               "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
             WebkitMaskComposite: "xor",
@@ -84,7 +84,7 @@ export function Button({
           <span className="text-[15px] leading-none whitespace-nowrap">
             {children}
           </span>
-          <ArrowRight className="w-4 h-4 flex-shrink-0 text-sky-100/90 transition-transform duration-300 ease-out group-hover:translate-x-0.5 will-change-transform" />
+          <ArrowRight className="w-4 h-4 shrink-0 text-indigo-100/90 transition-transform duration-300 ease-out group-hover:translate-x-0.5 will-change-transform" />
         </span>
       </button>
     );

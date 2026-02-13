@@ -39,11 +39,7 @@ export function SEOInsight({ title, description, cards }: SEOInsightProps) {
   return (
     <section className="py-24 bg-bg-primary relative overflow-hidden">
       <Container className="relative z-10">
-        <SectionHeading
-          variant="minimalist"
-          subtitle="// SEO & ЭКСПЕРТИЗА"
-          description={description}
-        >
+        <SectionHeading variant="minimalist" description={description}>
           {title}
         </SectionHeading>
 
