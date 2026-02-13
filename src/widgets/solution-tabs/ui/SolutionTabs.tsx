@@ -8,7 +8,7 @@ import type { LucideIcon } from "lucide-react";
 
 const ScrollStack = dynamic(() => import("@/components/ScrollStack").then((mod) => mod.default), {
   ssr: false,
-  loading: () => <div className="min-h-[400px] flex items-center justify-center">
+  loading: () => <div className="min-h-100 flex items-center justify-center">
     <div className="text-neutral-400">Загрузка...</div>
   </div>,
 });
