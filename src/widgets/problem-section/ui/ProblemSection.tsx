@@ -252,7 +252,6 @@ export function ProblemSection({
         <AnimatedSection stagger>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {problems.map((item, idx) => {
-              const Icon = iconMap[item.iconName ?? "gauge"] ?? Gauge;
               const Visual =
                 ProblemVisuals[item.iconName as keyof typeof ProblemVisuals] ??
                 ProblemVisuals.gauge;
@@ -282,7 +281,7 @@ export function ProblemSection({
                     </h3>
 
                     {/* Описание */}
-                    <p className="text-sm text-white/50 leading-relaxed mb-8">
+                    <p className="text-sm text-neutral-400 leading-relaxed mb-8">
                       {item.description}
                     </p>
 

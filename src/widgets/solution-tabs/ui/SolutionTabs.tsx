@@ -121,7 +121,7 @@ function SolutionCard({ solution }: SolutionCardProps) {
               {solution.title || solution.label}
             </h3>
             {solution.label && solution.title && (
-              <p className="text-xs text-neutral-500/80">{solution.label}</p>
+              <p className="text-xs text-neutral-400/90">{solution.label}</p>
             )}
           </div>
         </div>

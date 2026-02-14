@@ -37,7 +37,7 @@ export function ComparisonTable() {
 
           {/* Footer Note */}
           <div className="px-4 md:px-6 py-4 border-t border-white/5 bg-white/2">
-            <div className="flex items-start gap-2 text-white/40 text-xs">
+            <div className="flex items-start gap-2 text-neutral-400 text-xs">
               <Info size={14} className="mt-0.5 shrink-0" />
               <p>
                 * Vercel Hobby + Sanity Free tier позволяют запускать MVP за $0

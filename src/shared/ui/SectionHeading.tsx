@@ -47,7 +47,7 @@ export function SectionHeading({
 
         {description && (
           <div className="col-span-1 self-end md:text-right mt-8 md:mt-0">
-            <p className="text-white/70 max-w-md md:ml-auto text-base md:text-lg font-light">
+            <p className="text-neutral-300 max-w-md md:ml-auto text-base md:text-lg font-light">
               {description}
             </p>
           </div>

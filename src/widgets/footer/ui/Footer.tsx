@@ -36,6 +36,25 @@ const getSocialIcon = (platform: SocialLinkData["platform"]) => {
   }
 };
 
+const getSocialPlatformName = (platform: SocialLinkData["platform"]) => {
+  switch (platform) {
+    case "github":
+      return "GitHub";
+    case "linkedin":
+      return "LinkedIn";
+    case "twitter":
+      return "Twitter";
+    case "telegram":
+      return "Telegram";
+    case "instagram":
+      return "Instagram";
+    case "youtube":
+      return "YouTube";
+    case "vk":
+      return "ВКонтакте";
+  }
+};
+
 // Дефолтные данные для обратной совместимости
 const defaultFooterData: FooterData = {
   brandName: "simpl",
@@ -101,6 +120,7 @@ export function Footer({ data }: FooterProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-neutral-300 hover:text-white transition"
+                    aria-label={getSocialPlatformName(social.platform)}
                   >
                     {getSocialIcon(social.platform)}
                   </a>
@@ -134,7 +154,7 @@ export function Footer({ data }: FooterProps) {
         </div>
 
         <div className="mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-          <p className="text-[11px] sm:text-xs text-neutral-500">
+          <p className="text-[11px] sm:text-xs text-neutral-400">
             {copyrightText}
           </p>
           <div className="flex items-center gap-4 text-[11px] sm:text-xs">

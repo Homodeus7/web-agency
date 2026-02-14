@@ -15,10 +15,10 @@ export function MetricRow({ metric, isLast }: MetricRowProps) {
     >
       {/* Label Column */}
       <div className="px-4 md:px-6 flex items-center gap-3">
-        <div className="text-white/50 group-hover:text-white transition-colors shrink-0">
+        <div className="text-neutral-400 group-hover:text-white transition-colors shrink-0">
           {metric.icon}
         </div>
-        <span className="text-base md:text-lg text-white/80 group-hover:text-white transition-colors font-medium">
+        <span className="text-base md:text-lg text-neutral-200 group-hover:text-white transition-colors font-medium">
           {metric.label}
         </span>
       </div>
