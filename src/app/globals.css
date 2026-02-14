@@ -120,17 +120,45 @@
       opacity: 0.3;
     }
   }
+
+  /* ProblemSection animations */
+  @keyframes gauge-fill {
+    from {
+      stroke-dashoffset: 200;
+    }
+    to {
+      stroke-dashoffset: 40;
+    }
+  }
+
+  @keyframes draw-line {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes warning-pulse {
+    0% {
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.5);
+      opacity: 0;
+    }
+  }
 }
 
 /* ===== Base Styles ===== */
 html {
-  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -364,6 +392,13 @@ body {
 
 .scrollbar-track-transparent::-webkit-scrollbar-track {
   background: transparent;
+}
+
+/* ===== Performance Optimizations ===== */
+/* content-visibility for below-fold sections */
+#problems, #solutions, #comparison, #process, #tech, #pricing, #faq, #cta {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
 }
 
 /* ===== Solution Tabs ScrollStack ===== */

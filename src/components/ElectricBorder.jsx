@@ -15,6 +15,7 @@ const ElectricBorder = ({
   const animationRef = useRef(null);
   const timeRef = useRef(0);
   const lastFrameTimeRef = useRef(0);
+  const isVisibleRef = useRef(true);
 
   // Noise functions
   const random = useCallback(x => {
@@ -145,7 +146,7 @@ const ElectricBorder = ({
     if (!ctx) return;
 
     // Configuration
-    const octaves = 10;
+    const octaves = 5; // Reduced from 10 for better performance
     const lacunarity = 1.6;
     const gain = 0.7;
     const amplitude = chaos;
@@ -173,7 +174,12 @@ const ElectricBorder = ({
     let { width, height } = updateSize();
 
     const drawElectricBorder = currentTime => {
-      if (!canvas || !ctx) return;
+      if (!canvas || !ctx || !isVisibleRef.current) {
+        if (isVisibleRef.current) {
+          animationRef.current = requestAnimationFrame(drawElectricBorder);
+        }
+        return;
+      }
 
       const deltaTime = (currentTime - lastFrameTimeRef.current) / 1000;
       timeRef.current += deltaTime * speed;
@@ -199,7 +205,7 @@ const ElectricBorder = ({
       const radius = Math.min(borderRadius, maxRadius);
 
       const approximatePerimeter = 2 * (borderWidth + borderHeight) + 2 * Math.PI * radius;
-      const sampleCount = Math.floor(approximatePerimeter / 2);
+      const sampleCount = Math.floor(approximatePerimeter / 4); // Reduced from /2 for better performance
 
       ctx.beginPath();
 
@@ -256,6 +262,29 @@ const ElectricBorder = ({
     });
     resizeObserver.observe(container);
 
+    // IntersectionObserver to pause animation when not visible
+    const intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const wasVisible = isVisibleRef.current;
+          isVisibleRef.current = entry.isIntersecting;
+
+          // Resume animation if just became visible
+          if (!wasVisible && entry.isIntersecting && !animationRef.current) {
+            lastFrameTimeRef.current = performance.now();
+            animationRef.current = requestAnimationFrame(drawElectricBorder);
+          }
+          // Pause animation if just became invisible
+          else if (wasVisible && !entry.isIntersecting && animationRef.current) {
+            cancelAnimationFrame(animationRef.current);
+            animationRef.current = null;
+          }
+        });
+      },
+      { threshold: 0 }
+    );
+    intersectionObserver.observe(container);
+
     // Start animation
     animationRef.current = requestAnimationFrame(drawElectricBorder);
 
@@ -264,6 +293,7 @@ const ElectricBorder = ({
         cancelAnimationFrame(animationRef.current);
       }
       resizeObserver.disconnect();
+      intersectionObserver.disconnect();
     };
   }, [color, speed, chaos, borderRadius, octavedNoise, getRoundedRectPoint]);
 

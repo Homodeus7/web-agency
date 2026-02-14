@@ -1,14 +1,14 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
 
-const SITE_URL = 'https://example.ru' // Замените на реальный URL
+const SITE_URL = "https://web-agency-two-ruddy.vercel.app"; 
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_URL,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: "weekly",
       priority: 1,
     },
-  ]
+  ];
 }

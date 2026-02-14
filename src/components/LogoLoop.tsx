@@ -119,6 +119,7 @@ const useAnimationLoop = (
   const lastTimestampRef = useRef<number | null>(null);
   const offsetRef = useRef(0);
   const velocityRef = useRef(0);
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -135,6 +136,13 @@ const useAnimationLoop = (
     }
 
     const animate = (timestamp: number) => {
+      if (!isVisibleRef.current) {
+        if (isVisibleRef.current) {
+          rafRef.current = requestAnimationFrame(animate);
+        }
+        return;
+      }
+
       if (lastTimestampRef.current === null) {
         lastTimestampRef.current = timestamp;
       }
@@ -161,6 +169,29 @@ const useAnimationLoop = (
       rafRef.current = requestAnimationFrame(animate);
     };
 
+    // IntersectionObserver to pause animation when not visible
+    const intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const wasVisible = isVisibleRef.current;
+          isVisibleRef.current = entry.isIntersecting;
+
+          // Resume animation if just became visible
+          if (!wasVisible && entry.isIntersecting && rafRef.current === null) {
+            lastTimestampRef.current = null;
+            rafRef.current = requestAnimationFrame(animate);
+          }
+          // Pause animation if just became invisible
+          else if (wasVisible && !entry.isIntersecting && rafRef.current !== null) {
+            cancelAnimationFrame(rafRef.current);
+            rafRef.current = null;
+          }
+        });
+      },
+      { threshold: 0 }
+    );
+    intersectionObserver.observe(track);
+
     rafRef.current = requestAnimationFrame(animate);
 
     return () => {
@@ -168,6 +199,7 @@ const useAnimationLoop = (
         cancelAnimationFrame(rafRef.current);
         rafRef.current = null;
       }
+      intersectionObserver.disconnect();
       lastTimestampRef.current = null;
     };
   }, [targetVelocity, seqWidth, seqHeight, isHovered, hoverSpeed, isVertical, trackRef]);

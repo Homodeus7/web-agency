@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { CheckCircle2 } from "lucide-react";
 import {
   Button,
@@ -10,7 +11,8 @@ import {
 import { cn } from "@/shared/lib/cn";
 import { useSelectedPackage } from "@/shared/lib/selected-package-context";
 import type { PricingPlanData } from "@/sanity/lib/types";
-import ElectricBorder from "@/components/ElectricBorder";
+
+const ElectricBorder = dynamic(() => import("@/components/ElectricBorder"), { ssr: false });
 
 interface PricingProps {
   title: string;

@@ -1,15 +1,18 @@
+import dynamic from "next/dynamic";
 import { Header } from "@/widgets/header";
 import { Hero } from "@/widgets/hero";
-import { ProblemSection } from "@/widgets/problem-section";
 import { SolutionTabs } from "@/widgets/solution-tabs";
-import { ComparisonTable } from "@/widgets/comparison-table";
-import { ProcessSteps } from "@/widgets/process-steps";
-import { TechStack } from "@/widgets/tech-stack";
-import { Pricing } from "@/widgets/pricing";
-import { FAQ } from "@/widgets/faq";
-import { CTA } from "@/widgets/cta";
-import { Footer } from "@/widgets/footer";
 import { client } from "@/sanity/lib/client";
+
+// Dynamic imports for below-fold components
+const ProblemSection = dynamic(() => import("@/widgets/problem-section").then(m => ({ default: m.ProblemSection })));
+const ComparisonTable = dynamic(() => import("@/widgets/comparison-table").then(m => ({ default: m.ComparisonTable })));
+const ProcessSteps = dynamic(() => import("@/widgets/process-steps").then(m => ({ default: m.ProcessSteps })));
+const TechStack = dynamic(() => import("@/widgets/tech-stack").then(m => ({ default: m.TechStack })));
+const Pricing = dynamic(() => import("@/widgets/pricing").then(m => ({ default: m.Pricing })));
+const FAQ = dynamic(() => import("@/widgets/faq").then(m => ({ default: m.FAQ })));
+const CTA = dynamic(() => import("@/widgets/cta").then(m => ({ default: m.CTA })));
+const Footer = dynamic(() => import("@/widgets/footer").then(m => ({ default: m.Footer })));
 import { homePageQuery } from "@/sanity/lib/queries";
 import type {
   HomePageData,

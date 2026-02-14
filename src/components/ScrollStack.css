@@ -41,15 +41,13 @@
   --rotation: 0deg;
   --blur: 0px;
 
-  transform: translate3d(0, var(--translate-y), 0)
-             scale(var(--scale))
-             rotate(var(--rotation));
+  transform: translate3d(0, var(--translate-y), 0) scale(var(--scale))
+    rotate(var(--rotation));
   filter: blur(var(--blur));
 
   /* Improve mobile performance */
-  -webkit-transform: translate3d(0, var(--translate-y), 0)
-                     scale(var(--scale))
-                     rotate(var(--rotation));
+  -webkit-transform: translate3d(0, var(--translate-y), 0) scale(var(--scale))
+    rotate(var(--rotation));
 }
 
 .scroll-stack-end {

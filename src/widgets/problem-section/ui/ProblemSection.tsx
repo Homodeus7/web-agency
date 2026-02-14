@@ -1,5 +1,3 @@
-"use client";
-
 import {
   AlertTriangle,
   TrendingUp,
@@ -299,41 +297,6 @@ export function ProblemSection({
           </div>
         </AnimatedSection>
       </Container>
-
-      {/* CSS анимации */}
-      <style jsx>{`
-        @keyframes gauge-fill {
-          from {
-            stroke-dashoffset: 200;
-          }
-          to {
-            stroke-dashoffset: 40;
-          }
-        }
-
-        @keyframes draw-line {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
-
-        @keyframes fade-in {
-          to {
-            opacity: 1;
-          }
-        }
-
-        @keyframes warning-pulse {
-          0% {
-            transform: translate(-50%, -50%) scale(0.8);
-            opacity: 0.8;
-          }
-          100% {
-            transform: translate(-50%, -50%) scale(1.5);
-            opacity: 0;
-          }
-        }
-      `}</style>
     </section>
   );
 }
